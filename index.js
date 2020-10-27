@@ -1,5 +1,5 @@
 // ⭐️ Example Challenge START ⭐️
-
+console.clear();
 /**
  * ### Challenge `processFirstItem`
  * 
@@ -48,9 +48,15 @@ function processFirstItem(stringList, callback) {
  * [2] Invoking `processLength` passing `[]` and `(num) => "There are " + num`,
  * should return "There are 0".
 */
-function processLength(/* CODE HERE */) {
-  /* CODE HERE */
+function processLength(list, callback) {
+  return callback(list.length);
 }
+// TEST CODE
+var output = processLength(['foo', 'bar'],(num) => num + 1000);
+console.log(output);  // should return 1002
+
+var output = processLength([],(num) => "There are " + num);
+console.log(output);  // should return "There are 0"
 
 /**
  * ### Challenge `processLastItem`
@@ -66,9 +72,12 @@ function processLength(/* CODE HERE */) {
  * Invoking `processLastItem` passing `['foo', 'bar']` and `(str) => str + str`,
  * should return 'barbar'.
 */
-function processLastItem(/* CODE HERE */) {
-  /* CODE HERE */
+function processLastItem(stringList, callback) {
+  return callback(stringList[stringList.length - 1]);
 }
+// TEST CODE
+var output = processLastItem(['foo', 'bar'],(str) => str + str);
+console.log(output);  // should return barbar
 
 /**
  * ### Challenge `processSum`
@@ -88,10 +97,12 @@ function processLastItem(/* CODE HERE */) {
  * [2] Invoking `processSum` passing `-5`, '-1', and `(num) => num + 1000`,
  * should return 994.
 */
-function processSum(/* CODE HERE */) {
-  /* CODE HERE */
+function processSum(num1, num2, callback) {
+  return callback(num1 + num2);
 }
-
+// TEST CODE
+var output = processSum(-5, -1, (num) => num + 1000);
+console.log(output);  // should return 994
 /**
  * ### Challenge `processProduct`
  * 
@@ -110,10 +121,12 @@ function processSum(/* CODE HERE */) {
  * [2] Invoking `processProduct` passing 25 and 0 and `(num) => num + 1000`,
  * should return 1000.
 */
-function processProduct(/* CODE HERE */) {
-  /* CODE HERE */
+function processProduct(num1, num2, callback) {
+  return callback(num1 * num2);
 }
-
+// TEST CODE
+var output = processProduct(25, 0, (num) => num + 1000);
+console.log(output);  // should return 1000
 /**
  * ### Challenge `processDuplicateFree`
  * THIS IS A STRETCH PROBLEM! ATTEMPT ONLY AFTER COMPLETING ALL NON-STRETCH CHALLENGES!
@@ -132,10 +145,16 @@ function processProduct(/* CODE HERE */) {
  * [2] Invoking `processDuplicateFree` passing `[1,1,2,2,3]` and `(arr) => arr.length`,
  * should return 3.
 */
-function processDuplicateFree(/* CODE HERE ONLY AFTER COMPLETING ALL OTHER TASKS */) {
-  /* CODE HERE ONLY AFTER COMPLETING ALL OTHER TASKS */
-}
+function processDuplicateFree(list, callback) {
+  return callback
 
+  // loop through each one and test for equal
+}
+// TEST CODE
+var output = processDuplicateFree([1,1,1,2], (arr) => arr);
+console.log(output);  // should return [1,2]
+var output = processDuplicateFree([1,1,2,2,3], (arr) => arr.length);
+console.log(output);  // should return 3
 /////////////// HIGHER-ORDER ARRAY METHODS ///////////////
 /////////////// HIGHER-ORDER ARRAY METHODS ///////////////
 
@@ -155,9 +174,19 @@ function processDuplicateFree(/* CODE HERE ONLY AFTER COMPLETING ALL OTHER TASKS
  * 
  * [2] Invoking `lowerCaseStrings` with `['a', 'b', 'c' ]` will return `[ 'a', 'b', 'c' ]`.
 */
-function lowerCaseStrings(/* code here */) {
-  /* code here */
+function lowerCaseStrings(strings) {
+  let arrayOfLowerCase = [];
+  strings.forEach(element => {
+    let lowerCaseLetter = element.toLowerCase();
+    arrayOfLowerCase.push(lowerCaseLetter);
+  })  
+return arrayOfLowerCase;
 }
+// TEST CODE
+var output = lowerCaseStrings(['Orange', 'APPLE', 'banana', 'mAnGo']);
+console.log(output);  // should return [ 'orange', 'apple', 'banana', 'mango' ]
+var output = lowerCaseStrings(['a', 'b', 'c' ]); 
+console.log(output);  // should return [ 'a', 'b', 'c' ]
 
 /**
  * ### Challenge `isItAnApple`
@@ -174,10 +203,22 @@ function lowerCaseStrings(/* code here */) {
  * 
  * [2] Invoking `isItAnApple` with `['a', 'b', 'c' ]` will return `[ false, false, false ]`.
 */
-function isItAnApple(/* code here */) {
-  /* code here */
+function isItAnApple(strings) {
+  let isAppleArray = [];
+  strings.forEach(element => {
+    if (element === "apple") {
+      isAppleArray.push(true);
+    } else {
+      isAppleArray.push(false);
+    }
+    })
+  return isAppleArray;
 }
-
+// TEST CODE
+var output = isItAnApple([ 'orange', 'apple', 'banana', 'apples', 'apple', 'mango' ]);
+console.log(output);  // should return [ false, true, false, false, true, false ]
+var output = isItAnApple(['a', 'b', 'c' ]);
+console.log(output);  // should return [ false, false, false ]
 /**
  * ### Challenge `removeApple`
  * 
@@ -194,10 +235,20 @@ function isItAnApple(/* code here */) {
  * 
  * [2] Invoking `removeApple` with `['a', 'b', 'c' ]` will return `[ 'a', 'b', 'c' ]`.
 */
-function removeApple(/* code here */) {
-  /* code here */
+function removeApple(strings) {
+  let appleRemovedArray = [];
+  strings.forEach (element => {
+    if (element !== "apple") {
+      appleRemovedArray.push(element);
+    } 
+  })
+  return appleRemovedArray;
 }
-
+// TEST CODE
+var output = removeApple([ 'orange', 'apple', 'banana', 'apples', 'apple', 'mango' ]);
+console.log(output);  // should return [ 'orange', 'banana', 'apples', 'mango' ]
+var output = removeApple(['a', 'b', 'c' ]);
+console.log(output);  // should return [ 'a', 'b', 'c' ]
 /**
  * ### Challenge `stringSmash`
  * 
@@ -213,10 +264,18 @@ function removeApple(/* code here */) {
  * 
  * [2] Invoking `stringSmash` with `['a', 'b', 'c' ]` will return `abc`.
 */
-function stringSmash(/* code here */) {
-  /* code here */
+function stringSmash(strings) {
+  let comboString = "";
+  strings.forEach(element => {
+    comboString += element;
+  })
+  return comboString;
 }
-
+// TEST CODE
+var output = stringSmash([ 'orange', 'apple', 'banana', 'apples', 'apple', 'mango' ]);
+console.log(output);  // should return 'orangeapplebananaapplesapplemango'
+var output = stringSmash(['a', 'b', 'c' ]);
+console.log(output);  // should return `abc`
 // A local community center is holding a fund raising 5k fun run and has invited
 // 50 small businesses to make a small donation on their behalf for some much needed
 // updates to their facilities. Each business has assigned a representative
@@ -232,10 +291,17 @@ function stringSmash(/* code here */) {
  * @returns an array with all the runners' full names in the following format: "Smith, John".
  * The full names appear in the array in the same order the runners appear in the `runners` array.
 */
-function getFullNames(/* CODE HERE */) {
-  /* CODE HERE */
+function getFullNames(runners) {
+  let nameArray = runners.map(element => {
+    return `${element.last_name}, ${element.first_name}`;
+  })
+  return nameArray;
 }
-
+// TEST CODE
+var output = getFullNames([ { id: 1, first_name: "Charmain", last_name: "Seiler", email: "cseiler0@wired.com", shirt_size: "2XL", company_name: "Divanoodle", donation: 75 },
+{ id: 2, first_name: "Whitaker", last_name: "Ierland", email: "wierland1@angelfire.com", shirt_size: "2XL", company_name: "Wordtune", donation: 148 },
+]);
+console.log(output);  // should return array of names "Smith, John"
 /**
  * ### Challenge `firstNamesAllCaps`
  * 
@@ -248,7 +314,7 @@ function getFullNames(/* CODE HERE */) {
  * @returns an array with all the runners' first names in ALL CAPS.
  * The first names appear in the array in the same order the runners appear in the `runners` array.
 */
-function firstNamesAllCaps(/* CODE HERE */) {
+function firstNamesAllCaps(runners) {
   /* CODE HERE */
 }
 
