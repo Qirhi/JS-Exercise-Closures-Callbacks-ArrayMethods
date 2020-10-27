@@ -315,9 +315,15 @@ console.log(output);  // should return array of names "Smith, John"
  * The first names appear in the array in the same order the runners appear in the `runners` array.
 */
 function firstNamesAllCaps(runners) {
-  /* CODE HERE */
+  let firstNameCapsArray = runners.map(element => {
+    let firstName = element.first_name;
+    return firstName.toUpperCase();
+    })
+  return firstNameCapsArray;
 }
-
+// TEST CODE
+var output = firstNamesAllCaps([{ id: 1, first_name: "Charmain", last_name: "Seiler", email: "cseiler0@wired.com", shirt_size: "2XL", company_name: "Divanoodle", donation: 75 }]);
+console.log(output);  // should return array of names "JOHN"
 /**
  * ### Challenge `getRunnersByTShirtSize`
  * * THIS IS A STRETCH PROBLEM! ATTEMPT ONLY AFTER COMPLETING ALL NON-STRETCH CHALLENGES!
@@ -332,10 +338,15 @@ function firstNamesAllCaps(runners) {
  * @returns an array containing only the runners that use the given `tShirtSize`.
  * The runners in the array appear in the same order they appear in the `runners` array.
 */
-function getRunnersByTShirtSize(/* CODE HERE */) {
-  /* CODE HERE */
+function getRunnersByTShirtSize(runners, tShirtSize) {
+  let runnersByTShirtSize = runners.filter(element => element.shirt_size === tShirtSize);
+  return runnersByTShirtSize;
 }
-
+// TEST CODE
+var output = getRunnersByTShirtSize([ { id: 1, first_name: "Charmain", last_name: "Seiler", email: "cseiler0@wired.com", shirt_size: "2XL", company_name: "Divanoodle", donation: 75 },
+{ id: 2, first_name: "Whitaker", last_name: "Ierland", email: "wierland1@angelfire.com", shirt_size: "2XL", company_name: "Wordtune", donation: 148 },
+], "2XL");
+console.log(output);  // should return array of runners with shirt_size: 2XL
 /**
  * ### Challenge `tallyUpDonations`
  *  * THIS IS A STRETCH PROBLEM! ATTEMPT ONLY AFTER COMPLETING ALL NON-STRETCH CHALLENGES!
@@ -347,8 +358,9 @@ function getRunnersByTShirtSize(/* CODE HERE */) {
  * @param runners array of runners like the one inside the /data/runners.js file.
  * @returns a number which is the sum of the donations by all runners.
 */
-function tallyUpDonations(/* CODE HERE */) {
-  /* CODE HERE */
+function tallyUpDonations(runners) {
+  let tally = runners.reduce(runners.donation, 0);
+  return tally;
 }
 
 /////////////// CLOSURES ///////////////
